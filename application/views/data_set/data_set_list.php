@@ -49,10 +49,14 @@
             ?>
                     <tr>
 						<td><?php echo ++$start ?></td>
-						<td><?php echo $data_set->gaji_ortu ?></td>
+						<td>Rp<?php echo number_format($data_set->gaji_ortu,2,',','.') ?></td>
 						<td><?php echo $data_set->tanggungan_ortu ?></td>
 						<td><?php echo $data_set->ipk_mhs ?></td>
-						<td><?php echo $data_set->beasiswa ?></td>
+						<td><?php if ($data_set->beasiswa == "0") {
+                            echo "Tidak Menerima";
+                        }else{
+                            echo "Menerima";
+                        }?></td>
 						<td><?php echo $data_set->status ?></td>
 						<td style="text-align:center" width="200px">
 						<?php 

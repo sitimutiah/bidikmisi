@@ -37,9 +37,8 @@
 
 								<li><a href="<?php echo base_url('data_set.html') ?>"><i class="fa fa-users"></i> <span>Data Train</span></a></li>
 								<li><a href="<?php echo base_url('data_tes.html') ?>"><i class="icon-home4"></i> <span>Data Testing</span></a></li>
-								<li>
-								<li><a href="<?php echo base_url('data_tes.html') ?>"><i class="fa fa-sitemap"></i> <span>Hasil Prediksi Kelayakan</span></a></li>
-								<a href="<?php echo base_url('users.html') ?>"><i class="icon-users"></i> <span>Kelola Users</span></a>
+								<li><a href="<?php echo base_url('#') ?>"><i class="fa fa-sitemap"></i> <span>Hasil Prediksi Kelayakan</span></a></li>
+								<li><a href="<?php echo base_url('users.html') ?>"><i class="icon-users"></i> <span>Kelola Users</span></a>
 								</li>
 
 <?php else: ?>

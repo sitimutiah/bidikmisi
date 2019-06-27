@@ -49,7 +49,15 @@
             ?>
                     <tr>
 						<td><?php echo ++$start ?></td>
-						<td><?php echo $data_tes->gaji_ortu ?></td>
+						<td>Rp<?php echo number_format($data_tes->gaji_ortu,2,',','.') ?></td>
+                        <td><?php echo $data_tes->tanggungan_ortu ?></td>
+                        <td><?php echo $data_tes->ipk_mhs ?></td>
+                        <td><?php if ($data_tes->beasiswa == "0") {
+                            echo "Tidak Menerima";
+                        }else{
+                            echo "Menerima";
+                        }?></td>
+                        <td><?php echo $data_tes->status ?></td>
 						<td style="text-align:center" width="200px">
 						<?php 
 							echo anchor(site_url('data_tes/update/'.$data_tes->id_data_tes),'Update'); 

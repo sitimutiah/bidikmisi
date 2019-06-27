@@ -8,7 +8,7 @@ class Data_set_model extends CI_Model
 
     public $table = 'data_set';
     public $id = 'id_data_set';
-    public $order = 'DESC';
+    public $order = 'ASC';
 
     function __construct()
     {

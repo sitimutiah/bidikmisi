@@ -47,7 +47,11 @@ class Data_tes extends CI_Controller
                 'user'        => $user ,
                // 'dusun'       => $dusun ,
 				'id_data_tes' => $row->id_data_tes,
-				//'nama_desa' => $row->nama_desa,
+			    'gaji_ortu' => $row->gaji_ortu,
+                'tanggungan_ortu' => $row->tanggungan_ortu,
+                'ipk_mhs' => $row->ipk_mhs,
+                'beasiswa' => $row->beasiswa,
+                'status' => $row->status,
 			);
             $this->load->view('layout/layout', $data);
         } else {
@@ -68,7 +72,12 @@ class Data_tes extends CI_Controller
             'user'        => $user ,
             'button' => 'Tambah',
             'action' => site_url('data_tes/create_action'),
-		    'id_desa' => set_value('id_data_tes'),
+            'id_data_tes' => set_value('id_data_tes'),
+            'gaji_ortu' => set_value('gaji_ortu'),
+            'tanggungan_ortu' => set_value('tanggungan_ortu'),
+            'ipk_mhs' => set_value('ipk_mhs'),
+            'beasiswa' => set_value('beasiswa'),
+            'status' => set_value('status'),
 		    //'nama_desa' => set_value('nama_desa'),
 		);
         $this->load->view('layout/layout', $data);
@@ -82,6 +91,7 @@ class Data_tes extends CI_Controller
             $this->create();
         } else {
             $data = array(
+
                 'gaji_ortu' => $this->input->post('gaji_ortu',TRUE),
                 'tanggungan_ortu' => $this->input->post('tanggungan_ortu',TRUE),
                 'ipk_mhs' => $this->input->post('ipk_mhs',TRUE),
@@ -108,7 +118,6 @@ class Data_tes extends CI_Controller
                 'content'     => 'data_tes/data_tes_form', 
                 'breadcrumbs' => $this->breadcrumbs->show(),
                 'user'        => $user ,
-
                 'button' => 'Update',
                 'action' => site_url('data_tes/update_action'),
                 'id_data_tes' => set_value('id_data_tes', $row->id_data_tes),
@@ -163,9 +172,12 @@ class Data_tes extends CI_Controller
 
     public function _rules() 
     {
-		$this->form_validation->set_rules('nama_desa', 'nama desa', 'trim|required');
-
-		$this->form_validation->set_rules('id_desa', 'id_desa', 'trim');
+		$this->form_validation->set_rules('gaji_ortu', 'Gaji Orang Tua', 'trim|required');
+        $this->form_validation->set_rules('tanggungan_ortu', 'Tanggungan', 'trim|required');
+        $this->form_validation->set_rules('ipk_mhs', 'IPK', 'trim|required');
+        $this->form_validation->set_rules('beasiswa', 'Beasiswa', 'trim|required');
+        $this->form_validation->set_rules('status', 'Status', 'trim|required');
+		$this->form_validation->set_rules('id_data_tes', 'id_data_tes', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

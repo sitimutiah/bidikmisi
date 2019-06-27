@@ -89,10 +89,11 @@ class Data_set extends CI_Controller
             $this->create();
         } else {
             $data = array(
+
 				'gaji_ortu' => $this->input->post('gaji_ortu',TRUE),
 				'tanggungan_ortu' => $this->input->post('tanggungan_ortu',TRUE),
 				'ipk_mhs' => $this->input->post('ipk_mhs',TRUE),
-				'beasiswa' => $this->input->post('beasiswa',TRUE),
+				'beasisw' => $this->input->post('beasiswa',TRUE),
 				'status' => $this->input->post('status',TRUE),
 		    );
 

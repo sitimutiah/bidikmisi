@@ -22,8 +22,8 @@
                     <input type="text" class="form-control" name="gaji_ortu" id="gaji_ortu" placeholder="Gaji Orang Tua" value="<?php echo $gaji_ortu; ?>" />
                 </div>
                 <div class="form-group">
-                    <label for="varchar">Tanggungan <?php echo form_error('tanggunagan_ortu') ?></label>
-                    <input type="text" class="form-control" name="tanggunagan_ortu" id="tanggunagan_ortu" placeholder="Tanggungan" value="<?php echo $tanggungan_ortu; ?>" />
+                    <label for="varchar">Tanggungan <?php echo form_error('tanggungan_ortu') ?></label>
+                    <input type="text" class="form-control" name="tanggungan_ortu" id="tanggungan_ortu" placeholder="Tanggungan" value="<?php echo $tanggungan_ortu; ?>" />
                 </div>
                 <div class="form-group">
                     <label for="varchar">IPK <?php echo form_error('ipk_mhs') ?></label>
@@ -31,13 +31,21 @@
                 </div>
                 <div class="form-group">
                     <label for="varchar">Menerima Beasiswa Lain <?php echo form_error('beasiswa') ?></label>
-                    <input type="text" class="form-control" name="beasiswa" id="beasiswa" placeholder="beasiswa" value="<?php echo $beasiswa; ?>" />
+                    <select class="form-control" name="beasiswa" id="beasiswa">
+                        <option></option>
+                        <?php
+                            foreach ($beasiswa->result() as $row) {
+ 
+                            echo "<option value='".$row->id_data_tes."'>".$row->beasiswa."</option>";
+                             }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="varchar">Status <?php echo form_error('status') ?></label>
                     <input type="text" class="form-control" name="status" id="status" placeholder="status" value="<?php echo $status; ?>" />
                 </div>
-				<input type="hidden" name="id_data_tes" value="<?php echo $id_data_tes; ?>" /> 
+				<input type="hidden" name="id_data_tes" value="<?php echo $id_data_tes; ?>" />
 				<button type="submit" class="btn btn-success"><?php echo $button ?></button> 
 				<a href="<?php echo site_url('data_tes') ?>" class="btn btn-default">Cancel</a>
 			</form>
