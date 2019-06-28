@@ -137,7 +137,7 @@ class Data_set extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == TRUE) {
             $this->update($this->input->post('id_data_set', TRUE));
         } else {
             $data = array(

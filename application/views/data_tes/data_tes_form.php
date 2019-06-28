@@ -32,13 +32,10 @@
                 <div class="form-group">
                     <label for="varchar">Menerima Beasiswa Lain <?php echo form_error('beasiswa') ?></label>
                     <select class="form-control" name="beasiswa" id="beasiswa">
-                        <option></option>
-                        <?php
-                            foreach ($beasiswa->result() as $row) {
- 
-                            echo "<option value='".$row->id_data_tes."'>".$row->beasiswa."</option>";
-                             }
-                        ?>
+                        
+                            <option value="0">Tidak Menerima</option>
+                            <option value="1">Menerima</option>
+                                  
                     </select>
                 </div>
                 <div class="form-group">

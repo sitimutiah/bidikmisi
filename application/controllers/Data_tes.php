@@ -19,13 +19,12 @@ class Data_tes extends CI_Controller
         $data_tes = $this->Data_tes_model->get_all();
         $user = $this->ion_auth->user()->row();
         $this->breadcrumbs->push('Data Testing', '/data_tes');
-
         $data = array(
             'title'       => 'Data Testing' ,
             'content'     => 'data_tes/data_tes_list', 
             'breadcrumbs' => $this->breadcrumbs->show(),
             'user'        => $user ,
-            
+            'beasiswa'    => $this->Data_tes_model->get_all(),
             'data_tes_data' => $data_tes
         );
 

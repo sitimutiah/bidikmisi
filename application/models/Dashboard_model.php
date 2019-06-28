@@ -31,50 +31,26 @@ class Dashboard_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('id_data_tes', $q);
-	$this->db->or_like('id_desa', $q);
-	$this->db->or_like('id_user', $q);
-	$this->db->or_like('tanggal', $q);
-	$this->db->or_like('kemiringan_lereng', $q);
-	$this->db->or_like('kondisi_tanah', $q);
-	$this->db->or_like('batuan_penyusun_lereng', $q);
-	$this->db->or_like('curah_hujan', $q);
-	$this->db->or_like('tata_air_lereng', $q);
-	$this->db->or_like('vegetasi', $q);
-	$this->db->or_like('pola_tanam', $q);
-	$this->db->or_like('penggalian_dan_pemotongan_lereng', $q);
-	$this->db->or_like('pencetakan_kolam', $q);
-	$this->db->or_like('drainase', $q);
-	$this->db->or_like('pembangunan_konstruksi', $q);
-	$this->db->or_like('kepadatan_penduduk', $q);
-	$this->db->or_like('usaha_mitigasi', $q);
-	$this->db->or_like('hasil', $q);
-	$this->db->from($this->table);
+    $this->db->like('id_data_tes', $q);
+    $this->db->or_like('gaji_ortu', $q);
+    $this->db->or_like('tanggungan_ortu', $q);
+    $this->db->or_like('ipk_mhs', $q);
+    $this->db->or_like('beasiswa', $q);
+    $this->db->or_like('status', $q);
+    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_data_tes', $q);
-        $this->db->or_like('id_desa', $q);
-        $this->db->or_like('id_user', $q);
-        $this->db->or_like('tanggal', $q);
-        $this->db->or_like('kemiringan_lereng', $q);
-        $this->db->or_like('kondisi_tanah', $q);
-        $this->db->or_like('batuan_penyusun_lereng', $q);
-        $this->db->or_like('curah_hujan', $q);
-        $this->db->or_like('tata_air_lereng', $q);
-        $this->db->or_like('vegetasi', $q);
-        $this->db->or_like('pola_tanam', $q);
-        $this->db->or_like('penggalian_dan_pemotongan_lereng', $q);
-        $this->db->or_like('pencetakan_kolam', $q);
-        $this->db->or_like('drainase', $q);
-        $this->db->or_like('pembangunan_konstruksi', $q);
-        $this->db->or_like('kepadatan_penduduk', $q);
-        $this->db->or_like('usaha_mitigasi', $q);
-        $this->db->or_like('hasil', $q);
-        $this->db->limit($limit, $start);
+       $this->db->order_by($this->id, $this->order);
+    $this->db->like('id_data_tes', $q);
+    $this->db->or_like('gaji_ortu', $q);
+    $this->db->or_like('tanggungan_ortu', $q);
+    $this->db->or_like('ipk_mhs', $q);
+    $this->db->or_like('beasiswa', $q);
+    $this->db->or_like('status', $q);
+    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

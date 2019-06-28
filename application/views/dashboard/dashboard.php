@@ -33,54 +33,39 @@
                 <thead>
                     <tr>
                         <th width="50px">No</th>
-						<th>Desa</th>
-                        <th>Daerah</th>
-						<th>Pengintput</th>
-						<th>Tanggal</th>
-						<th>Kemiringan Lereng</th>
-						<th>Kondisi Tanah</th>
-						<th>Batuan Penyusun Lereng</th>
-						<th>Curah Hujan</th>
-						<th>Tata Air Lereng</th>
-						<th>Vegetasi</th>
-						<th>Pola Tanam</th>
-						<th>Penggalian Dan Pemotongan Lereng</th>
-						<th>Pencetakan Kolam</th>
-						<th>Drainase</th>
-						<th>Pembangunan Konstruksi</th>
-						<th>Kepadatan Penduduk</th>
-						<th>Usaha Mitigasi</th>
-						<th>Hasil</th>
+                        <th>Gaji Orang Tua</th>
+                        <th>Tanggungan Orang Tua</th>
+                        <th>IPK</th>
+                        <th>Menerima Beasiswa Lain</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 				<tbody>
             <?php
                 $start = 0;
-                foreach ($dashboard_data as $data_tes1)
+                foreach ($data_tes_data as $data_tes)
                 {
             ?>
                     <tr>
-						<td><?php echo ++$start ?></td>
-                        <td><?php echo $this->Desa_model->get_by_id($data_tes1->id_desa)->nama_desa ?></td>
-                        <td><?php echo "Dusun ".$this->Desa_model->get_dusun_by_id($data_tes1->id_desa_detail)->dusun." - Luas Daerah ".$this->Desa_model->get_dusun_by_id($data_tes1->id_desa_detail)->luas_daerah;?> Ha</td>
-                        <td><?php echo $this->Users_model->get_by_id($data_tes1->id_user)->username ?></td>
-						<td><?php echo $data_tes1->tanggal ?></td>
-						<td><?php echo $data_tes1->kemiringan_lereng ?></td>
-						<td><?php echo $data_tes1->kondisi_tanah ?></td>
-						<td><?php echo $data_tes1->batuan_penyusun_lereng ?></td>
-						<td><?php echo $data_tes1->curah_hujan ?></td>
-						<td><?php echo $data_tes1->tata_air_lereng ?></td>
-						<td><?php echo $data_tes1->vegetasi ?></td>
-						<td><?php echo $data_tes1->pola_tanam ?></td>
-						<td><?php echo $data_tes1->penggalian_dan_pemotongan_lereng ?></td>
-						<td><?php echo $data_tes1->pencetakan_kolam ?></td>
-						<td><?php echo $data_tes1->drainase ?></td>
-						<td><?php echo $data_tes1->pembangunan_konstruksi ?></td>
-						<td><?php echo $data_tes1->kepadatan_penduduk ?></td>
-						<td><?php echo $data_tes1->usaha_mitigasi ?></td>
-						<td><?php echo $data_tes1->hasil ?></td>
-						
-					</tr>
+                        <td><?php echo ++$start ?></td>
+                        <td>Rp<?php echo number_format($data_tes->gaji_ortu,2,',','.') ?></td>
+                        <td><?php echo $data_tes->tanggungan_ortu ?></td>
+                        <td><?php echo $data_tes->ipk_mhs ?></td>
+                        <td><?php if ($data_tes->beasiswa == "0") {
+                            echo "Tidak Menerima";
+                        }else{
+                            echo "Menerima";
+                        }?></td>
+                        <td><?php echo $data_tes->status ?></td>
+                        <td style="text-align:center" width="200px">
+                        <?php 
+                            echo anchor(site_url('data_tes/update/'.$data_tes->id_data_tes),'Update'); 
+                            echo ' | '; 
+                            echo anchor(site_url('data_tes/delete/'.$data_tes->id_data_tes),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+                        ?>
+                        </td>
+                    </tr>
             <?php
                 }
             ?>
