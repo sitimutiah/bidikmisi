@@ -62,8 +62,13 @@ class Data_tes extends CI_Controller
     public function create() 
     {
         $user = $this->ion_auth->user()->row();
-        $this->breadcrumbs->push('Data Testing', '/data_tes');
-        $this->breadcrumbs->push('tambah', '/data_tes/create');
+        $this->breadcrumbs->push('Data Testing', '/data_tes'); //menampilkan data
+
+
+        $this->breadcrumbs->push('tambah', '/data_tes/create'); //insert
+
+
+
         $data = array(
             'title'       => 'Data Testing' ,
             'content'     => 'data_tes/data_tes_form', 
@@ -80,6 +85,62 @@ class Data_tes extends CI_Controller
 		    //'nama_desa' => set_value('nama_desa'),
 		);
         $this->load->view('layout/layout', $data);
+    }
+
+    public function hitunghasil()
+    {
+        $gaji           = '5000000';//$_POST['gaji'];
+        $tanggungan     = '2';//$_POST['tanggungan'];
+        $ipk            = '3.67';//$_POST['ipk'];
+        $beasiswa       = '1';//$_POST['beasiswa']; 
+
+
+        $query_gj_layak = $this->db->select('AVG(gaji_ortu) as average_gj_layak')->from('data_set')->where('status', 'Layak')->get();
+
+        $mean_gajilayak = $query_gj_layak->row()->average_gj_layak;
+
+        $query_gj_tidak = $this->db->select('AVG(gaji_ortu) as average_gj_tdak')->from('data_set')->where('status', 'Tidak Layak')->get();
+          $mean_gaji_tidak_layak = $query_gj_tidak->row()->average_gj_tdak;
+
+        $query_gj_all = $this->db->select('AVG(gaji_ortu) as average_gj_all')->from('data_set')->get();
+        $mean_gaji_all = $query_gj_all->row()->average_gj_all;
+
+        // $mean_gaji = $query->row()->average_score;
+
+        /*$query_ipk_layak = $this->db->select('AVG(ipk_mhs) as average_ipk_layak')->from('data_set')->where('status', 'Layak')->get();
+
+        $query_ipk_tidak = $this->db->select('AVG(ipk_mhs) as average_ipk_tdak')->from('data_set')->where('status', 'Tidak Layak')->get();
+
+        $query_ipk_all = $this->db->select('AVG(ipk_mhs) as average_ipk_all')->from('data_set')->get();*/
+
+         $query_sum_gj_all = $this->db->select('sum(gaji_ortu) as sum_gj_all')->from('data_set')->get();
+         $sum_gaji_all = $query_sum_gj_all->row()->sum_gj_all;
+
+         $count_layak=$this->db->select('count(status) as count_layak')->from('data_set')->where('status', 'Layak')->get();
+         $count_layak = $count_layak->row()->count_layak;
+
+         $count_tidak_layak=$this->db->select('count(status) count_tidak_layak')->from('data_set')->where('status', 'Tidak Layak')->get();
+        $count_tidak_layak = $count_tidak_layak->row()->count_tidak_layak;
+
+         $count_all=$this->db->select('count(status) as count_all')->from('data_set')->get();
+        $count_all = $count_all->row()->count_all;
+
+       $varian_gj_tidak = pow(($sum_gaji_all-$mean_gaji_tidak_layak),2);
+
+       $varian_a_tdak_layak=($varian_gj_tidak)/($count_tidak_layak);
+
+       // echo'/'.round($varian_gj_tidak);
+       // echo'<br>';
+       // echo'/'.$count_tidak_layak;
+
+       echo round($varian_a_tdak_layak);
+
+
+
+        
+        //print_r($mean);
+
+
     }
     
     public function create_action() 

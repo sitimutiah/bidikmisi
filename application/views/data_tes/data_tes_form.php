@@ -44,9 +44,43 @@
                 </div>
 				<input type="hidden" name="id_data_tes" value="<?php echo $id_data_tes; ?>" />
 				<button type="submit" class="btn btn-success"><?php echo $button ?></button> 
+                <button type="button" class="btn btn-warning" onclick="hitunghasil();">Hitung</button>
 				<a href="<?php echo site_url('data_tes') ?>" class="btn btn-default">Cancel</a>
 			</form>
         
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+    function hitunghasil() {
+
+    var gaji_ortu           = $("#gaji_ortu").val();
+    var tanggungan_ortu     = $("#tanggungan_ortu").val();
+    var ipk_mhs             = $("#ipk_mhs").val();
+    var beasiswa            = $("#beasiswa").val();
+
+
+    var kirim        = "gaji="+gaji_ortu+"&tanggungan="+tanggungan_ortu+"&ipk="+ipk_mhs+"&beasiswa="+beasiswa;
+    //alert(kirim);
+
+     $.ajax({
+        type: "POST",
+        url: "<?php echo base_url('Data_tes/hitunghasil') ?>",
+        data: kirim,
+        cache: false,
+        success: function(html)
+        {
+          alert(html);
+          //$("#tampilkan").html(html);
+        },
+        
+        error : function(html){
+          //$("#tampilkan").html("Data tidak ditemukan!");
+          //alert(html);
+        }
+      });
+  }
+</script>
